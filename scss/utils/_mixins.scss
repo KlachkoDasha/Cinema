@@ -1,0 +1,55 @@
+/* Mixins:
+   ========================================================================== */
+
+// px to rem
+@function rem($pixels, $context: $mainFontSize) {
+    @if (unitless($pixels)) {
+      $pixels: $pixels * 1px;
+    }
+    @if (unitless($context)) {
+      $context: $context * 1px;
+    }
+    @return $pixels / $context * 1rem;
+}
+
+  //transition
+@function move($time: .2s){
+    @return $time ease-in;
+}
+
+  // // Засветление
+  // @function lighter($color, $tone: 0%) {
+  //   $adjust: 16*$tone;
+  //   @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust);
+  // }
+
+  // // Застемнение
+  // @function darker($color, $tone: 0%) {
+  //   $adjust: -16*$tone;
+  //   @return adjust-color($color, $red: $adjust, $green: $adjust, $blue: $adjust);
+  // }
+
+  // size to one line
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+
+
+@mixin font-face(
+    $font-family,
+    $file-path,
+    $weight: normal,
+    $style: normal,
+    $asset-pipeline: false
+) {
+    @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    src: url("#{$file-path}.woff") format("woff"),
+        url("#{$file-path}.woff2") format("woff2");
+    }
+}
